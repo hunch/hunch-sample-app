@@ -1,0 +1,343 @@
+/*
+YUI Recent CSS copyright Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+html{color:#000;background:#fff;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;font-variant:normal;}
+/* to preserve line-height and selector appearance */
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+/*to enable resizing for IE*/
+input,textarea,select{*font-size:100%;}
+/*because legend doesn't inherit in IE */
+legend{color:#000;}
+
+b,u,s,i { font-style:normal; font-weight:normal; text-decoration:none; }
+
+
+/** type */
+
+body, input, textarea, select, button {
+    font: normal 14px/20px helvetica, arial, hirakakupro-w3, osaka, "ms pgothic", sans-serif;
+    color: #333;
+}
+
+/* **/
+
+/** layout */
+
+html {
+	background-color: #eee;
+}
+
+body {
+	text-align: center;
+}
+
+#container {
+	position: relative;
+	margin: 0 auto 20px;
+	padding: 20px 20px 40px;
+	width: 920px;
+	text-align: left;
+	background-color: #fff;
+
+	/* fancy box shadow */
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+	/* fancy rounded bottom */
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+/* **/
+
+/** basics */
+
+.left { float: left; }
+.right { float: right; }
+img.left { margin: 0 15px 15px 0; }
+img.right { margin: 0 0 15px 15px; }
+
+.clr { overflow: hidden; zoom: 1; }
+.clr-flt { clear: both; }
+
+.large { font-size: 16px; }
+.small { font-size: 12px; }
+.dim { color: #666; }
+strong,
+.strong { font-weight: bold; }
+em,
+.em { font-style: italic; }
+.hide { display: none; }
+
+a {
+	color: #0070be;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0070be;
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+	font-weight: bold;
+}
+
+h1,
+h2 {
+	font-size: 30px;
+	line-height: 40px;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+/* **/
+
+/** forms */
+
+.placeholder { color: #999; }
+
+/* **/
+
+
+/* special elements */
+
+.page-error {
+    z-index: 999;
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    margin-left: -150px;
+    padding: 9px 10px;
+	width: 200px;
+    background-color: #fff1a8;
+    font-size: 15px;
+    text-align: center;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#poweredby {
+	position: relative;
+	float: right;
+	padding: 8px 63px 0 0;
+}
+
+#poweredby a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 22px;
+	width: 58px;
+	overflow: hidden;
+	text-indent: -9999em;
+	background: url(../img/hunch-logo.png) scroll no-repeat 0 0;
+}
+
+
+/** media box */
+
+.rec {
+	margin-bottom: 20px;
+
+	/* this clears the image that floats inside .rec */
+	overflow: hidden;
+	zoom: 1;
+}
+
+.rec a.media img {
+	float: left;
+	margin: 0 10px 18px 0;
+}
+
+.rec .content {
+	margin-left: 160px;
+}
+
+/* **/
+
+
+/** questions and answers */
+
+.question {
+	position: relative;
+	padding: 18px 20px;
+	width: 360px;
+	background-color: #eee;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.question .skip-wrap {
+	clear: right;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.question .skip {
+	float: right;
+}
+
+.question h3 {
+	border-top: 0;
+	margin: 0 0 9px 0;
+	padding: 0;
+	text-transform: none;
+}
+
+.question .question-image {
+	float: right;
+	width: 80px;
+	height: 80px;
+	margin: 0 0 10px 10px;
+}
+
+.question .indicator {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 18px;
+	height: 18px;
+	background: transparent url(/media/img/loading-333-eee-16px.gif) scroll no-repeat center center;
+	text-indent: -9999em;
+	overflow: hidden;
+	z-index: 100;
+}
+
+.loading .indicator { display: block; }
+
+.answers {
+	position: relative;
+	margin: 0 0 18px;
+	font-size: 15px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.answers li {
+	position: relative;
+	padding-left: 30px;
+}
+
+.answers li a {
+	position: relative;
+	display: block;
+	padding: 3px 6px;
+	color: #000;
+	background-color: transparent;
+	text-shadow: transparent 0 1px 2px;
+    zoom: 1;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.answers li a:focus { outline: 1px dotted #f3f3f3; }
+
+.answers li a:hover,
+.answers li a:active {
+	color: #fff;
+	background-color: #c6401b;
+	text-decoration: none;
+	text-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
+}
+
+.answers li a:active {
+	background-color: #aa220c;
+}
+
+.answers li b {
+	position: absolute;
+	left: -20px;
+	top: 6px;
+	width: 0;
+	height: 0;
+	border-right: 0;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 9px solid #004b73;
+
+	/* ie6fix */
+    font-size: 0;
+    line-height: 0;
+    _border-top-color: pink;
+    _border-bottom-color: pink;
+    _filter: chroma(color=pink);
+}
+
+.answers li a:hover b { border-left-color: #c6401b; }
+.answers li a:active b { border-left-color: #aa220c; }
+
+.image-answers li {
+	float: left; width: 100px;
+	padding-left: 0;
+}
+
+.image-answers li a {
+	display: block;
+	width: 80px;
+	padding: 10px;
+	min-height: 80px;
+}
+
+.image-answers img {
+	width: 80px;
+	height: 80px;
+}
+
+.image-answers span {
+	display: block;
+	font-size: 13px;
+	text-align: center;
+}
+
+/* **/
+
+
+
+
+/** clearfix from http://www.pathf.com/blogs/2007/09/developers-note-2/ */
+
+* html .pkg { /* ie6 */
+  height: 1%;
+  overflow: visible;
+}
+
+*+html .pkg { /* ie7 */
+  min-height: 1%;
+}
+
+.pkg:after { /* everyone else */
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
+/* **/

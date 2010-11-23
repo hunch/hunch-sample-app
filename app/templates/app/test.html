@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Hunch App Testing Page{% endblock %}
+
+{% block body_class %}test{% endblock %}
+
+{% block content %}
+<h1>Your Recommendations</h1>
+
+<p>
+  Recommendations pulled from the <a href="http://hunch.com/developers/v1/resources/datasets/">Hunch Local dataset</a>
+</p>
+<br />
+
+<div id="recs">
+  <img style="padding:10px;" src="/media/img/loader.gif" />
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ HOSTNAME }}/media/js/hunch-api.js"></script>
+{% if auth_token %}<script type="text/javascript">Hunch.setAuthToken('{{ auth_token }}');</script>{% endif %}
+<script type="text/javascript" src="/media/js/app.js"></script>
+<script type="text/javascript">INIT.test({{ js_cfg|json }});</script>
+{% endblock %}

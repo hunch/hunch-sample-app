@@ -1,0 +1,30 @@
+application: app-name #edit me!
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+# allow use of the remote console
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+# don't complain about missing favicon
+- url: /favicon.ico
+  static_files: media/img/favicon.ico
+  upload: media/img/favicon.ico
+
+# serve static files
+- url: /media
+  static_dir: media
+
+# start the app
+- url: /.*
+  script: main.py
+
+builtins:
+# for an explaination of builtins, see:
+# http://code.google.com/appengine/docs/python/config/appconfig.html#Builtin_Handlers
+- datastore_admin: on
+- remote_api: on
+- admin_redirect: on

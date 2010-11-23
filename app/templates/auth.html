@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Select a Friend{% endblock %}
+
+{% block body_class %}select{% endblock %}
+
+{% block content %}
+<div id="alpha">
+    <h1>Authorize this Application</h1>
+    <div class="box">
+      <a target="_top" href="{{ auth_url }}">Connect with Hunch</a>
+    </div>
+</div><!-- /alpha -->
+{% endblock %}
