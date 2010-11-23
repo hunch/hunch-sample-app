@@ -2,35 +2,32 @@ Hunch Application Framework
 ================================
 
 This application is a starting point for developers who want to build
-applications using the Hunch API (http://hunch.com/developers/). The
-application is built to run on Google App Engine, but can can also be
-used as a stand-along Django project.
+applications using the [Hunch API](http://hunch.com/developers/). The
+application is built to run on [Google App Engine](http://code.google.com/appengine/),
+but can can also be used as a stand-alone Django project.
 
 This sample application will display recommendations for a single
 Hunch user by placing that user's AUTH_TOKEN in app/config.py. If you
 would like to generate recommendations for arbitrary Hunch users,
-obtain an APP_ID and APP_SECRET by e-mailing bd@hunch.com. You will
+obtain an APP_ID and APP_SECRET by e-mailing [bd@hunch.com](mailto:bd_hunch.com). You will
 them be able to Hunch connect (OAuth) users into your application and
 store their auth_tokens.
 
 Other libraries used include:
- - jQuery JavaScript Framework [http://jquery.com/](http://jquery.com/)
- - Mustache JavaScript templating library [http://github.com/janl/mustache.js](http://github.com/janl/mustache.js)
- - Hunch JavaScript SDK [http://hunch.com/developers/v1/resources/samples/](http://hunch.com/developers/v1/resources/samples/)
- - Google App Engine Helper for Django [http://code.google.com/p/google-app-engine-django/](http://code.google.com/p/google-app-engine-django/)
+* jQuery JavaScript Framework [http://jquery.com/](http://jquery.com/)
+* Mustache JavaScript templating library [http://github.com/janl/mustache.js](http://github.com/janl/mustache.js)
+* Hunch JavaScript SDK [http://hunch.com/developers/v1/resources/samples/](http://hunch.com/developers/v1/resources/samples/)
+* Google App Engine Helper for Django [http://code.google.com/p/google-app-engine-django/](http://code.google.com/p/google-app-engine-django/)
 
 
 Getting started
 ---------------
 
-1. Download Google App Engine Python SDK
-   * [http://code.google.com/appengine/downloads.html](http://code.google.com/appengine/downloads.html)
+1. Download [Google App Engine Python SDK](http://code.google.com/appengine/downloads.html)
 
 2. Configure initial settings
    * in app/config.py, edit APP_ID and APP_SECRET for your Hunch application, OR
-   * in app/config.py, add your AUTH_TOKEN for the test page to function
-        your AUTH_TOKEN can be found at [the bottom of the Hunch developer docs](http://hunch.com/developers/v1/docs/) (login and select "show my auth_token")
-        remember to remove your AUTH_TOKEN when you push your app to production!
+   * in app/config.py, add your AUTH_TOKEN for the test page to function. Your AUTH_TOKEN can be found at [the bottom of the Hunch developer docs](http://hunch.com/developers/v1/docs/) (login and select "show my auth_token")
    * if you're using GAE: in app.yaml, edit app-name; in app/config.py, edit APP_HOSTNAME
 
 3. Update the settings.py file
@@ -69,17 +66,17 @@ Launch a remote Python console for interacting with the app and datastore
 Notes and gotchas
 -----------------
 
-* Hunch provides a [Javascript SDK](http://hunch.com/media/js/hunch-api.js).
-GAE will penalize your app if requests take over 1000 ms to complete, so
-push as many calls to the frontend as possible by using the Hunch Javascript SDK
+* GAE will penalize your app if requests take over 1000 ms to complete, so
+push as many calls to the frontend as possible by using the
+[Hunch Javascript SDK](http://hunch.com/media/js/hunch-api.js)
 
-* This application is packaged with google-app-engine-django, a helper
+* This application is packaged with [google-app-engine-django](http://code.google.com/p/google-app-engine-django/), a helper
 for creating Django projects that run on GAE. It is worthwhile to read
 the [overview of using the helper](http://code.google.com/appengine/articles/appengine_helper_for_django.html).
 A zip file of Django 1.0.2 is included as django.zip to be used by the
 helper
 
-* GAE uses Python 2.5, so running commands like manage.py with python2.5 is
+* GAE uses Python 2.5, so running scripts like `manage.py` with python2.5 is
 recommended. The scripts `dev_server.sh` and `fresh_dev_server.sh` also use python2.5
 
 * For testing, it is useful to redirect your-app-name.appspot.com to your local machine.
