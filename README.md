@@ -1,5 +1,4 @@
 Hunch Application Framework
-Rev: 11/2010
 ================================
 
 This application is a starting point for developers who want to build
@@ -70,7 +69,7 @@ Launch a remote Python console for interacting with the app and datastore
 Notes and gotchas
 -----------------
 
-* Hunch provides a [Javascript SDK](http://hunch.com/media/js/hunch-api.js)
+* Hunch provides a [Javascript SDK](http://hunch.com/media/js/hunch-api.js).
 GAE will penalize your app if requests take over 1000 ms to complete, so
 push as many calls to the frontend as possible by using the Hunch Javascript SDK
 
