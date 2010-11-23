@@ -14,6 +14,7 @@ them be able to Hunch connect (OAuth) users into your application and
 store their auth_tokens.
 
 Other libraries used include:
+
 * jQuery JavaScript Framework [http://jquery.com/](http://jquery.com/)
 * Mustache JavaScript templating library [http://github.com/janl/mustache.js](http://github.com/janl/mustache.js)
 * Hunch JavaScript SDK [http://hunch.com/developers/v1/resources/samples/](http://hunch.com/developers/v1/resources/samples/)
