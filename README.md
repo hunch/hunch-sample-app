@@ -15,16 +15,16 @@ store their auth_tokens.
 
 Other libraries used include:
 
-* jQuery JavaScript Framework [http://jquery.com/](http://jquery.com/)
-* Mustache JavaScript templating library [http://github.com/janl/mustache.js](http://github.com/janl/mustache.js)
-* Hunch JavaScript SDK [http://hunch.com/developers/v1/resources/samples/](http://hunch.com/developers/v1/resources/samples/)
-* Google App Engine Helper for Django [http://code.google.com/p/google-app-engine-django/](http://code.google.com/p/google-app-engine-django/)
+* [jQuery JavaScript Framework](http://jquery.com/)
+* [Mustache JavaScript templating library](http://github.com/janl/mustache.js)
+* [Hunch JavaScript SDK](http://hunch.com/developers/v1/resources/samples/)
+* [Google App Engine Helper for Django](http://code.google.com/p/google-app-engine-django/)
 
 
 Getting started
 ---------------
 
-1. Download [Google App Engine Python SDK](http://code.google.com/appengine/downloads.html)
+1. Download the [Google App Engine Python SDK](http://code.google.com/appengine/downloads.html)
 
 2. Configure initial settings
    * in app/config.py, edit APP_ID and APP_SECRET for your Hunch application, OR
