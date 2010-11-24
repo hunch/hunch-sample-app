@@ -69,7 +69,7 @@ push as many calls to the frontend as possible by using the
 [Hunch Javascript SDK](http://hunch.com/media/js/hunch-api.js)
 
 * This application is packaged with [djangoappengine](http://www.allbuttonspressed.com/projects/djangoappengine)
-for creating Django projects that run on wither with standalone Django or GAE. It is worthwhile to read the [overview of using the helper](http://code.google.com/appengine/articles/django-nonrel.html).
+for creating Django projects that run on GAE. It is worthwhile to read the [overview of using the helper](http://code.google.com/appengine/articles/django-nonrel.html).
 
 * GAE uses Python 2.5, so running scripts like `manage.py` with python2.5 is
 recommended. The scripts `dev_server.sh` and `fresh_dev_server.sh` use python2.5
