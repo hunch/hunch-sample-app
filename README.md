@@ -74,7 +74,7 @@ for creating Django projects that run on GAE. It is worthwhile to read the [over
 * GAE uses Python 2.5, so running scripts like `manage.py` with python2.5 is
 recommended. The scripts `dev_server.sh` and `fresh_dev_server.sh` use python2.5
 
-* You can access the GAE admin console ar [http://localhost/_ah/admin/](http://localhost/_ah/admin/)
+* You can access the GAE admin console at [http://localhost/_ah/admin/](http://localhost/_ah/admin/)
 
 * For testing, it is useful to redirect your-app-name.appspot.com to your local machine.
 To accomplish this, edit your /etc/hosts file and point that address to your IP (or localhost)
