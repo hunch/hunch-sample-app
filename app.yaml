@@ -3,7 +3,24 @@ version: 1
 runtime: python
 api_version: 1
 
+builtins:
+# for an explaination of builtins, see:
+# http://code.google.com/appengine/docs/python/config/appconfig.html#Builtin_Handlers
+- datastore_admin: on
+- remote_api: on
+- admin_redirect: on
+
 handlers:
+# enable the task queue (used internally by djangoappengine)
+- url: /_ah/queue/deferred
+  script: djangoappengine/deferred/handler.py
+  login: admin
+
+# django admin media page
+- url: /media/admin
+  static_dir: django/contrib/admin/media
+  expiration: '0'
+
 # allow use of the remote console
 - url: /remote_api
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
@@ -17,14 +34,8 @@ handlers:
 # serve static files
 - url: /media
   static_dir: media
+  expiration: '365d'
 
 # start the app
 - url: /.*
-  script: main.py
-
-builtins:
-# for an explaination of builtins, see:
-# http://code.google.com/appengine/docs/python/config/appconfig.html#Builtin_Handlers
-- datastore_admin: on
-- remote_api: on
-- admin_redirect: on
+  script: djangoappengine/main/main.py

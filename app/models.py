@@ -1,16 +1,16 @@
-from appengine_django.models import BaseModel
+from django.db import models
 from google.appengine.ext import db
 
-class User(BaseModel):
-    user_id = db.StringProperty()
-    first_name = db.StringProperty()
-    last_name = db.StringProperty()
-    fb_id = db.StringProperty()
-    auth_token = db.StringProperty()
-    auth_token_key = db.StringProperty()
-    date_joined = db.DateTimeProperty('date joined')
+class User(models.Model):
+    user_id = models.CharField(max_length=35)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    fb_id = models.CharField(max_length=32)
+    auth_token = models.CharField(max_length=50)
+    auth_token_key = models.CharField(max_length=50)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
-class ThayResponse(BaseModel):
-    user = db.ReferenceProperty(User)
-    response_id = db.StringProperty()
-    question_id = db.StringProperty()
+class ThayResponse(models.Model):
+    user = models.ForeignKey(User)
+    response_id = models.CharField(max_length=32)
+    question_id = models.CharField(max_length=32)

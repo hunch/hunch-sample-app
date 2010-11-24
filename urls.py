@@ -9,7 +9,7 @@ urlpatterns = patterns(
     url(r'^$', 'app.views.landing', name='landing'),
 
     # Static serve
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    # (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
     # The app
     (r'^', include('app.urls')),
