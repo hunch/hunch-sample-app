@@ -17,7 +17,7 @@ SECRET_KEY = '##################################################'
 # from random import choice
 # print ''.join([choice(string.letters + string.digits + string.punctuation) for i in range(50)])
 
-DEBUG = True
+DEBUG = False
 
 ##################
 # Don't touch me #

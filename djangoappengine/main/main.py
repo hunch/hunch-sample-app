@@ -19,7 +19,7 @@ for path in sys.path[:]:
 # Remove the standard version of Django.
 if 'django' in sys.modules and sys.modules['django'].VERSION < (1, 2):
     for k in [k for k in sys.modules
-              if k.startswith('django\.') or k == 'django']:
+              if k.startswith('django.') or k == 'django']:
         del sys.modules[k]
 
 from djangoappengine.boot import setup_env, setup_logging, env_ext
@@ -46,8 +46,13 @@ def real_main():
     os.environ.update(env_ext)
     setup_logging()
 
-    # Create a Django application for WSGI.
+    # Create a Django application for WSGI
     application = WSGIHandler()
+
+    # Add the staticfiles handler if necessary
+    if settings.DEBUG and 'django.contrib.staticfiles' in settings.INSTALLED_APPS:
+        from django.contrib.staticfiles.handlers import StaticFilesHandler
+        application = StaticFilesHandler(application)
 
     # Run the WSGI CGI handler with that application.
     run_wsgi_app(application)

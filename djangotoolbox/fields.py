@@ -91,6 +91,12 @@ class AbstractIterableField(models.Field):
         return self._convert(self.item_field.get_db_prep_save,
                              value, connection=connection)
 
+    # TODO/XXX: Remove this once we have a cleaner solution
+    def get_db_prep_lookup(self, lookup_type, value, connection, prepared=False):
+        if hasattr(value, 'as_lookup_value'):
+            value = value.as_lookup_value(self, lookup_type, connection)
+        return value
+
     def validate(self, values, model_instance):
         try:
             iter(values)
@@ -189,7 +195,8 @@ class EmbeddedModelField(models.Field):
     """
     Field that allows you to embed a model instance.
 
-    :param model: The (optional) model class that shall be embedded
+    :param model: (optional) The model class that shall be embedded
+                  (may also be passed as string similar to relation fields)
     """
     __metaclass__ = models.SubfieldBase
 
@@ -200,6 +207,27 @@ class EmbeddedModelField(models.Field):
 
     def db_type(self, connection):
         return 'DictField:RawField'
+
+    def _set_model(self, model):
+        # EmbeddedModelFields are not contribute[d]_to_class if using within
+        # ListFields (and friends), so we can only know the model field is
+        # used in when the IterableField sets our 'model' attribute in its
+        # contribute_to_class method.
+        # We need to know the model to generate a valid key for the lookup.
+
+        if model is not None and isinstance(self.embedded_model, basestring):
+            # The model argument passed to __init__ was a string, so we need
+            # to make sure to resolve that string to the corresponding model
+            # class, similar to relation fields. We abuse some of the
+            # relation fields' code to do the lookup here:
+            def _resolve_lookup(self_, resolved_model, model):
+                self.embedded_model = resolved_model
+            from django.db.models.fields.related import add_lazy_relation
+            add_lazy_relation(model, self, self.embedded_model, _resolve_lookup)
+
+        self._model = model
+
+    model = property(lambda self:self._model, _set_model)
 
     def pre_save(self, model_instance, add):
         embedded_instance = super(EmbeddedModelField, self).pre_save(model_instance, add)
@@ -225,6 +253,12 @@ class EmbeddedModelField(models.Field):
             values.update({'_module' : embedded_instance.__class__.__module__,
                            '_model'  : embedded_instance.__class__.__name__})
         return values
+
+    # TODO/XXX: Remove this once we have a cleaner solution
+    def get_db_prep_lookup(self, lookup_type, value, connection, prepared=False):
+        if hasattr(value, 'as_lookup_value'):
+            value = value.as_lookup_value(self, lookup_type, connection)
+        return value
 
     def to_python(self, values):
         if not isinstance(values, dict):

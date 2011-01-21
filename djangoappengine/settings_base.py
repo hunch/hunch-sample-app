@@ -12,6 +12,15 @@ TEMPLATE_DEBUG = DEBUG
 
 ROOT_URLCONF = 'urls'
 
+# Use locally
+# DATABASES = {
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': '/Users/gleitz/projects/wikipedia_mindmaze/db_sqlite3'
+    # },
+# }
+
+# Use on production
 DATABASES = {
     'default': {
         'ENGINE': 'djangoappengine.db',

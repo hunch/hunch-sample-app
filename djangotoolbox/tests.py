@@ -1,9 +1,18 @@
 from .fields import ListField, SetField, DictField, EmbeddedModelField
 from django.db import models, connections
 from django.db.models import Q
+from django.db.models.signals import post_save
 from django.db.utils import DatabaseError
+from django.dispatch.dispatcher import receiver
 from django.test import TestCase
 from django.utils import unittest
+
+class Target(models.Model):
+    index = models.IntegerField()
+
+class Source(models.Model):
+    target = models.ForeignKey(Target)
+    index = models.IntegerField()
 
 class ListModel(models.Model):
     floating_point = models.FloatField()
@@ -26,16 +35,16 @@ if supports_dicts:
         dictfield_nullable = DictField(null=True)
         auto_now = DictField(models.DateTimeField(auto_now=True))
 
+    class EmbeddedModelFieldModel(models.Model):
+        simple = EmbeddedModelField('EmbeddedModel', null=True)
+        typed_list = ListField(EmbeddedModelField('SetModel'))
+        untyped_list = ListField(EmbeddedModelField())
+        untyped_dict = DictField(EmbeddedModelField())
+
     class EmbeddedModel(models.Model):
         someint = models.IntegerField()
         auto_now = models.DateTimeField(auto_now=True)
         auto_now_add = models.DateTimeField(auto_now_add=True)
-
-    class EmbeddedModelFieldModel(models.Model):
-        simple = EmbeddedModelField(EmbeddedModel, null=True)
-        typed_list = ListField(EmbeddedModelField(SetModel))
-        untyped_list = ListField(EmbeddedModelField())
-        untyped_dict = DictField(EmbeddedModelField())
 
 class FilterTest(TestCase):
     floats = [5.3, 2.6, 9.1, 1.58]
@@ -250,3 +259,33 @@ class EmbeddedModelFieldTest(TestCase):
 EmbeddedModelFieldTest = unittest.skipIf(
     not supports_dicts, "Backend doesn't support dicts")(
     EmbeddedModelFieldTest)
+
+class SignalTest(TestCase):
+    def test_post_save(self):
+        created = []
+        @receiver(post_save, sender=SetModel)
+        def handle(**kwargs):
+            created.append(kwargs['created'])
+        SetModel().save()
+        self.assertEqual(created, [True])
+        SetModel.objects.get().save()
+        self.assertEqual(created, [True, False])
+        qs = SetModel.objects.all()
+        list(qs)[0].save()
+        self.assertEqual(created, [True, False, False])
+        list(qs)[0].save()
+        self.assertEqual(created, [True, False, False, False])
+        list(qs.select_related())[0].save()
+        self.assertEqual(created, [True, False, False, False, False])
+
+class SelectRelatedTest(TestCase):
+    def test_select_related(self):
+        target = Target(index=5)
+        target.save()
+        Source(target=target, index=8).save()
+        source = Source.objects.all().select_related()[0]
+        self.assertEqual(source.target.pk, target.pk)
+        self.assertEqual(source.target.index, target.index)
+        source = Source.objects.all().select_related('target')[0]
+        self.assertEqual(source.target.pk, target.pk)
+        self.assertEqual(source.target.index, target.index)

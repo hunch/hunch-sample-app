@@ -12,7 +12,9 @@ class NonrelDatabaseFeatures(BaseDatabaseFeatures):
     supports_date_lookup_using_string = False
     supports_timezones = False
 
+    supports_joins = False
     distinguishes_insert_from_update = False
+    supports_select_related = False
     supports_deleting_related_objects = False
     string_based_auto_field = False
     supports_dicts = False
