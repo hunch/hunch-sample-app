@@ -17,11 +17,21 @@ SECRET_KEY = '##################################################'
 # from random import choice
 # print ''.join([choice(string.letters + string.digits + string.punctuation) for i in range(50)])
 
-DEBUG = False
+DEBUG = True
 
 ##################
 # Don't touch me #
 ##################
+DATABASES = {
+    'default': {
+        'ENGINE': 'dbindexer',
+        'TARGET': 'gae',
+    },
+    'gae': {
+        'ENGINE': 'djangoappengine.db',
+    },
+}
+
 INSTALLED_APPS = (
     'djangoappengine',
     'djangotoolbox',
@@ -32,6 +42,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'dbindexer.middleware.DBIndexerMiddleware',
+    'app.middleware.SmartAppendSlashMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
@@ -46,4 +58,6 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
 
 ROOT_URLCONF = 'urls'
-
+APPEND_SLASH = False
+SMART_APPEND_SLASH = True
+DBINDEXER_SITECONF = 'dbindexes'
